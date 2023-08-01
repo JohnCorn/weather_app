@@ -80,28 +80,28 @@ const getIcon = (weatherDetails) => {
     switch(weatherDetails)
     {
         case "Thunderstorm":
-            return <TiWeatherStormy size={150} className="text-black"/> 
+            return <TiWeatherStormy size={200} className="text-gray-200"/> 
 
         case "Drizzle":
-            return <TiWeatherShower size={150} className="text-black"/>
+            return <TiWeatherShower size={200} className="text-gray-200"/>
 
         case "Rain":
-            return <TiWeatherDownpour size={150} className="text-black"/>
+            return <TiWeatherDownpour size={200} className="text-gray-200"/>
 
         case "Snow":
-            return <TiWeatherSnow size={150} className="text-black"/>
+            return <TiWeatherSnow size={200} className="text-black"/>
 
         case "Atmosphere":
-            return <TiWeatherWindy size={150} className="text-black"/>
+            return <TiWeatherWindy size={200} className="text-gray-200"/>
 
         case "Clear":
-            return <TiWeatherSunny size={150} className="text-black"/>
+            return <TiWeatherSunny size={200} className="text-[#FC7F10]"/>
         
         case "Clouds":
-            return <TiWeatherCloudy size={150} className="text-black"/>
+            return <TiWeatherCloudy size={200} className="text-white"/>
 
         default:
-            return <TiWeatherDownpour size={150} className="text-black"/>
+            return <TiWeatherDownpour size={200} className="text-gray-300"/>
     }
 }
 

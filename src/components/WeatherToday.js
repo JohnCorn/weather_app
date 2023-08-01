@@ -9,72 +9,57 @@ function WeatherToday({weather:
     units}){
 
   return (
-    <div className="flex justify-center text-center items-center">
-        <div>
+    <div className="mt-2">
 
-            <div className="h-full w-full">
-                <div>
-                    <p className="font-extrabold text-6xl">{name}</p>
+        <div className="mx-4">
 
-                    <p className="font-semibold text-lg">{formatToLocalTime(dt, timezone, "cccc LLLL dd h:mm a")}</p>
-                </div>
+            <div className="">
+                <p className="font-semibold text-md">{formatToLocalTime(dt, timezone, "cccc LLL dd")}</p>
+                <p className="font-extrabold text-4xl">{name}</p>
 
-                <div className=" flex justify-center text-center items-center">            
+                <p className="font-semibold text-lg">{formatToLocalTime(dt, timezone, "h:mm a")}</p>                                    
+            </div>
+
+            <div className="relative mt-4">
+                <div className="relative justify-center text-center z-10">            
+                    <h1 className="font-bold text-8xl">{Math.trunc(temp) + (units === "imperial" ? "°F" : "°C")}</h1>
+                    <h1 className="font-semibold text-xl">{description.toLowerCase()}</h1>
+                </div>  
+
+                <div className="absolute right-20 bottom-12 inset-0 flex justify-center text-center items-center">            
                     {getIcon(details)}     
-                </div>           
+                </div>  
+            </div>
 
-                <div className="font-semibold text-lg">
-                    <h1>{description.toLowerCase()}</h1>
-                </div>
-
-                <div className="font-bold text-8xl">
-                    <h1>{Math.trunc(temp) + (units === "imperial" ? "°F" : "°C")}</h1>
-
-                    <div className="font-normal text-xl grid grid-flow-col gap-2 items-center mt-2 p-2">
-
-                        <div className="grid grid-flow-col gap-1 items-center">
-                            <TbSunrise/>
-                            <h1 className="text-sm">Rise</h1>
-                            <h1>{formatToLocalTime(sunrise, timezone, "h:mm a")}</h1>
-                        </div>
-
-                        <div className="h-full w-full">
-                            <div className="bg-black h-full w-1 rounded"/>
-                        </div>
-
-                        <div className="grid grid-flow-col gap-1 top-0">
-                            <TbSunset/>
-                            <h1 className="text-sm">Set</h1>
-                            <h1>{ formatToLocalTime(sunset, timezone, "h:mm a")}</h1>
-                        </div>
-
-                        <div className="h-full w-full">
-                            <div className="bg-black h-full w-1 rounded"/>
-                        </div>
-
-                        <div className="grid grid-flow-col gap-1 items-center">
-                            <TiArrowDownThick/>
-                            <h1 className="text-sm">Low</h1>
-                            <h1>{ Math.trunc(temp_min) + (units === "imperial" ? "°F" : "°C")}</h1>
-                        </div>
-
-                        <div className="h-full w-full">
-                            <div className="bg-black h-full w-1 rounded"/>
-                        </div>
-
-                        <div className="grid grid-flow-col gap-1 items-center">
-                            <TiArrowUpThick/>
-                            <h1 className="text-sm">High</h1>
-                            <h1>{Math.trunc(temp_max) + (units === "imperial" ? "°F" : "°C")}</h1>
-                        </div>
+            <div className="border-2 max-w-[500px] grid grid-cols-3 items-center mx-auto">
+                <div className="border-2 grid grid-flow-row">
+                    <div className="flex justify-around items-baseline">
+                        <TbSunrise/>
+                        <h1>{formatToLocalTime(sunrise, timezone, "h:mm a")}</h1>
                     </div>
 
+                    <div className="flex justify-around items-baseline">
+                        <TbSunset/>
+                        <h1>{ formatToLocalTime(sunset, timezone, "h:mm a")}</h1>
+                    </div>
                 </div>
-            
+
+                <div className="border-2 grid grid-flow-row mt-2"> 
+                    <div className="flex justify-around items-baseline">
+                        <TiArrowUpThick/>
+                        <h1>{Math.trunc(temp_max) + (units === "imperial" ? "°F" : "°C")}</h1>
+                    </div>
+
+                    <div className="flex justify-around items-baseline">
+                        <TiArrowDownThick/>
+                        <h1>{ Math.trunc(temp_min) + (units === "imperial" ? "°F" : "°C")}</h1>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
-  );
+  )
 }
 
 export default WeatherToday;

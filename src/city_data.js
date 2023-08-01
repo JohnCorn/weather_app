@@ -3,13 +3,10 @@ const cities = [
         name:"New York"
     },
     {
-        name:"Tokyo"
+        name:"Austin"
     },
     {
-        name:"London"
-    },
-    {
-        name:"Hong Kong"
+        name:"Los Angeles"
     },
 ]
 export default cities

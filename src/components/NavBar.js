@@ -6,16 +6,18 @@ function NavBar( {changeCity} )
 {
 
     return (
-        <div className='flex justify-center items-center gap-5'>          
-            
-            {cities.map(({name}) => 
-                <CityButton
-                key={name} 
-                cityName={name}
-                changeCity={changeCity}
-                /> )}
-
+        <div className="h-10">
+            <div className='flex justify-around items-center'>          
+                
+                {cities.map(({name}) => 
+                    <CityButton
+                    key={name} 
+                    cityName={name}
+                    changeCity={changeCity}
+                    /> )}
+            </div>
         </div>
+
     );
 }
 

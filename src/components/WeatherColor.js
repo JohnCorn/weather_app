@@ -9,7 +9,7 @@ export default function WeatherColor(data)
             return "bg-gradient-to-t from-blue-500 to-slate-500"
 
         case "Rain":
-            return "bg-gradient-to-t from-slate-500 to-blue-100"
+            return "bg-[#3F71EE]"
 
         case "Snow":
             return "bg-gradient-to-t from-gray-200 to-cyan-100";
@@ -18,10 +18,10 @@ export default function WeatherColor(data)
             return "bg-red-200"
 
         case "Clear":
-            return "bg-gradient-to-t from-cyan-500 to-blue-500"
+            return "bg-[#86E3DE]"
         
         case "Clouds":
-            return "bg-gradient-to-t from-gray-500 to-slate-500"
+            return "bg-[#89A9B6]"
         
         default:
             return "bg-gradient-to-t from-gray-500 to-slate-500";

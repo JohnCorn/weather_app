@@ -39,26 +39,18 @@ function App()
   }else
   {
     return (
-        <div className={ WeatherColor(weather.details) + "  h-screen w-screen"}>
-          <div className="h-full w-full items-center justify-center">
-              <div className="grid grid-flow-row">
+        <div className={ WeatherColor(weather.details) + " h-screen w-screen "}>
 
-                <div className="w-full mt-5 h-10 border-2">
-                  <NavBar
-                    changeCity={handleChangeCity}
-                  />
-                </div>
-
-                <div className="w-full mt-5">
-                  <WeatherToday 
-                    weather={weather}
-                    units={units}
-                  />
-                </div>
-
+          <NavBar
+            changeCity={handleChangeCity}
+          />
+      
+          <WeatherToday 
+            weather={weather}
+            units={units}
+          />   
+ 
               </div>
-            </div>
-          </div>
     );
   }
 }
