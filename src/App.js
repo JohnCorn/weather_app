@@ -1,21 +1,25 @@
 import React, {useState, useEffect} from "react";
-import NavBar from "./components/NavBar";
-import WeatherToday from "./components/WeatherToday";
-import WeatherColor from "./components/WeatherColor";
-import formatCurrentWeather from "./weather_service"
 import getFormattedWeatherData from "./weather_service";
+import { formatCurrentWeather, backgroundColor } from "./weather_service"
+import MainDisplay from "./components/MainDisplay";
+import ForcastDisplay from "./components/ForcastDisplay";
+import NavBar from "./components/NavBar";
+
 function App() 
 {
   const[weather, setWeather] = useState({});
   const[location, setLocation] = useState({q: "New York"});
   const[units, setUnits] = useState("imperial");
 
+  const [weatherDisplay, setWeatherDisplay] =useState({})
+
   useEffect(() => {
+    console.log({location});
     const fetchWeather = async () => {
       await getFormattedWeatherData({...location, units})
       .then(data => {
         setWeather(data)
-        console.log(data)
+        setWeatherDisplay(data.daily[0])
       })
     }
     
@@ -29,6 +33,16 @@ function App()
     setLocation(cityName)
   }
 
+  function handleChangeDate(date)
+  {
+    for(let i=0; i <= weather.daily.length; i++){
+      if (weather.daily[i].title === date){
+        setWeatherDisplay(weather.daily[i])
+        break
+      }
+    }
+  }
+
   if (!weather.name)
   {
     return(
@@ -39,18 +53,21 @@ function App()
   }else
   {
     return (
-        <div className={ WeatherColor(weather.details) + " h-screen w-screen "}>
+      <div className={ /*backgroundColor(weather.details) + */"bg-gray-300 h-screen w-screen "}>
+       
+        <NavBar changeCity={handleChangeCity}/>
 
-          <NavBar
-            changeCity={handleChangeCity}
-          />
-      
-          <WeatherToday 
-            weather={weather}
-            units={units}
-          />   
- 
-              </div>
+        <MainDisplay
+          displayWeather={weatherDisplay}
+          weather={weather}
+        />
+
+        <ForcastDisplay
+          dailyWeather ={weather.daily}  
+          changeDate={handleChangeDate}
+        />
+
+      </div>
     );
   }
 }

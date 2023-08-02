@@ -32,10 +32,12 @@ const formatCurrentWeather = (data) => {
 const formatForcastWeather = (data) =>{
     let{timezone, daily, hourly} = data
 
-    daily = daily.slice(1, 6).map(day => {
+    daily = daily.slice(0, 6).map(day => {
         return {
             title: formatToLocalTime(day.dt, timezone, 'ccc'),
             temp: day.temp.day,
+            temp_min: day.temp.min,
+            temp_max: day.temp.max,
             details: day.weather[0].main,
         }
     })
@@ -76,35 +78,67 @@ const formatToLocalTime = (
     format = "cccc, dd, LLL, yyyy' | Local time: 'hh:mm a"
     ) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format)
 
-const getIcon = (weatherDetails) => {
+const getIcon = (weatherDetails, size) => {
+    const c ="text-gray-900"
+
     switch(weatherDetails)
     {
         case "Thunderstorm":
-            return <TiWeatherStormy size={200} className="text-gray-200"/> 
+            return <TiWeatherStormy size={size} className={c}/> 
 
         case "Drizzle":
-            return <TiWeatherShower size={200} className="text-gray-200"/>
+            return <TiWeatherShower size={size} className={c}/>
 
         case "Rain":
-            return <TiWeatherDownpour size={200} className="text-gray-200"/>
+            return <TiWeatherDownpour size={size} className={c}/>
 
         case "Snow":
-            return <TiWeatherSnow size={200} className="text-black"/>
+            return <TiWeatherSnow size={size} className={c}/>
 
         case "Atmosphere":
-            return <TiWeatherWindy size={200} className="text-gray-200"/>
+            return <TiWeatherWindy size={size} className={c}/>
 
         case "Clear":
-            return <TiWeatherSunny size={200} className="text-[#FC7F10]"/>
+            return <TiWeatherSunny size={size} className={c}/>
         
         case "Clouds":
-            return <TiWeatherCloudy size={200} className="text-white"/>
+            return <TiWeatherCloudy size={size} className={c}/>
 
         default:
-            return <TiWeatherDownpour size={200} className="text-gray-300"/>
+            return <TiWeatherDownpour size={size} className={c}/>
     }
+}
+
+const backgroundColor = (weatherDetails) =>
+    {
+        switch(weatherDetails)
+        {
+            case "Thunderstorm":
+                return "bg-gradient-to-t from-slate-400 to-slate-600"
+
+            case "Drizzle":
+                return "bg-gradient-to-t from-blue-500 to-slate-500"
+
+            case "Rain":
+                return "bg-[#3F71EE]"
+
+            case "Snow":
+                return "bg-gradient-to-t from-gray-200 to-cyan-100";
+
+            case "Atmosphere":
+                return "bg-red-200"
+
+            case "Clear":
+                return "bg-[#86E3DE]"
+            
+            case "Clouds":
+                return "bg-[#89A9B6]"
+            
+            default:
+                return "bg-gradient-to-t from-gray-500 to-slate-500";
+        }
 }
 
 export default getFormattedWeatherData
 
-export { formatToLocalTime, getIcon }
+export { formatToLocalTime, getIcon, backgroundColor }
