@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { HiOutlineSearch } from "react-icons/hi";
 
 function NavBar( {changeCity} ) 
 {
@@ -12,13 +13,23 @@ function NavBar( {changeCity} )
     }
 
     return (
-        <div className="pt-10">
+        <div className="pt-10 z-20">
             <div className=" flex justify-center">
-                <form onSubmit={(e) => handleSubmit(e)}>
-                <input placeholder="enter city name" value={cityName} onChange={(e) => setCityName(e.target.value)}type="text" name="name" />
-                <input    
-                type="submit" 
-                value="Submit" />
+                <form 
+                className="bg-blue-700/50 text-gray-50 rounded-full py-1"
+                onSubmit={(e) => handleSubmit(e)}>
+                    
+                    <input 
+                    className="bg-white/0 pl-3"
+                    placeholder="Search for a city" 
+                    value={cityName} 
+                    onChange={(e) => setCityName(e.target.value)}type="text" name="name" >
+                    </input>
+
+                    <button
+                    className="pr-2"
+                    type="submit"><HiOutlineSearch/></button>
+
                 </form>
             </div>
         </div>

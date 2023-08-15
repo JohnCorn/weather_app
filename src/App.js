@@ -2,8 +2,9 @@ import React, {useState, useEffect} from "react";
 import getFormattedWeatherData from "./weather_service";
 import { formatCurrentWeather, backgroundColor } from "./weather_service"
 import MainDisplay from "./components/MainDisplay";
-import ForcastDisplay from "./components/ForcastDisplay";
+import DailyForecast from "./components/DailyForecast";
 import NavBar from "./components/NavBar";
+import HourlyForecast from "./components/HourlyForecast";
 
 function App() 
 {
@@ -53,19 +54,25 @@ function App()
   }else
   {
     return (
-      <div className={ /*backgroundColor(weather.details) + */"bg-gray-300 h-screen w-screen "}>
+      <div className={ /*backgroundColor(weather.details) + */"bg-gradient-to-b from-blue-500 to-blue-400 h-screen w-screen"}>
        
         <NavBar changeCity={handleChangeCity}/>
 
         <MainDisplay
-          displayWeather={weatherDisplay}
+          displayWeather={weather}
           weather={weather}
         />
 
-        <ForcastDisplay
-          dailyWeather ={weather.daily}  
-          changeDate={handleChangeDate}
-        />
+        <div className='absolute bottom-0 left-0 right-0'>
+          <HourlyForecast
+            hourlyWeather ={weather.hourly}  
+          />
+
+          <DailyForecast
+            dailyWeather ={weather.daily}  
+            changeDate={handleChangeDate}
+          />
+        </div>
 
       </div>
     );

@@ -1,0 +1,31 @@
+import React from 'react'
+import DailyForecastCard from './DailyForecastCard'
+import {BsCalendar3}  from "react-icons/bs";
+
+function DailyForecast( {dailyWeather, changeDate} ) {
+
+  return (
+    <div className=' bg-blue-700/50 rounded-xl mx-4 mb-4 pt-2'>
+        <div className='my-2 mx-3 grid grid-rows divide-y divide-gray-50/30'>
+          <div className='text-blue-300 mb-3 flex items-center font-body'>
+            <BsCalendar3/>
+            <div className='ml-2'>
+              6-Day Forecast
+            </div>
+          </div>
+          <div className='divide-y divide-gray-50/30'>
+        { dailyWeather.map((day, index) =>
+            <DailyForecastCard
+                key={index}
+                day={day}
+                index={index}
+
+                changeDate={changeDate}
+            />) }
+            </div>
+        </div>
+    </div>
+  )
+}
+
+export default DailyForecast
