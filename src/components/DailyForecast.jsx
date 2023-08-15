@@ -10,7 +10,7 @@ function DailyForecast( {dailyWeather, changeDate} ) {
           <div className='text-blue-300 mb-3 flex items-center font-body'>
             <BsCalendar3/>
             <div className='ml-2'>
-              6-Day Forecast
+              7-Day Forecast
             </div>
           </div>
           <div className='divide-y divide-gray-50/30'>

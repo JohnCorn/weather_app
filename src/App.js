@@ -27,10 +27,8 @@ function App()
     fetchWeather()
   },[location, units])
     
-
   function handleChangeCity(cityName)
   {
-    console.log("handleChangeCity", cityName);
     setLocation(cityName)
   }
 
@@ -63,7 +61,7 @@ function App()
           weather={weather}
         />
 
-        <div className='absolute bottom-0 left-0 right-0'>
+        <div className='absolute bottom-0 left-0 right-0 justify-center max-w-[500px] mx-auto'>
           <HourlyForecast
             hourlyWeather ={weather.hourly}  
           />

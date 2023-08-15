@@ -30,15 +30,17 @@ const formatCurrentWeather = (data) => {
 }
 
 const formatForcastWeather = (data) =>{
+    console.log(data)
     let{timezone, daily, hourly} = data
 
-    daily = daily.slice(0, 6).map(day => {
+    daily = daily.slice(0, 7).map(day => {
         return {
             title: formatToLocalTime(day.dt, timezone, 'ccc'),
             temp: day.temp.day,
             temp_min: day.temp.min,
             temp_max: day.temp.max,
             details: day.weather[0].main,
+            pop: day.pop
         }
     })
 
@@ -47,6 +49,7 @@ const formatForcastWeather = (data) =>{
             title: formatToLocalTime(hour.dt, timezone, 'hh'),
             temp: hour.temp,
             details: hour.weather[0].main,
+            pop: hour.pop
         }
     })
 
@@ -109,6 +112,22 @@ const getIcon = (weatherDetails, size) => {
     }
 }
 
+const getPrecipitation = (weatherDetails, pop) => {
+    const formatPop = (pop.toFixed(1) * 100) + "%"
+
+    switch(weatherDetails)
+    {
+        case "Thunderstorm":          
+        case "Drizzle":          
+        case "Rain":      
+        case "Snow":
+            return [true, formatPop];
+
+        default:
+            return [false, formatPop];
+    }
+}
+
 const backgroundColor = (weatherDetails) =>
     {
         switch(weatherDetails)
@@ -141,4 +160,4 @@ const backgroundColor = (weatherDetails) =>
 
 export default getFormattedWeatherData
 
-export { formatToLocalTime, getIcon, backgroundColor }
+export { formatToLocalTime, getIcon, backgroundColor, getPrecipitation }
