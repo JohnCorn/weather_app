@@ -5,9 +5,12 @@ import MainDisplay from "./components/MainDisplay";
 import DailyForecast from "./components/DailyForecast";
 import NavBar from "./components/NavBar";
 import HourlyForecast from "./components/HourlyForecast";
+import ErrorAlert from "./components/ErrorAlert";
 
 function App() 
 {
+  const[showAlert, setShowAlert] = useState(false);
+
   const[weather, setWeather] = useState({});
   const[location, setLocation] = useState({q: "New York"});
   const[units, setUnits] = useState("imperial");
@@ -21,7 +24,7 @@ function App()
       .then(data => {
         setWeather(data)
         setWeatherDisplay(data.daily[0])
-      })
+      }).catch(() => setShowAlert(true))
     }
     
     fetchWeather()
@@ -52,8 +55,12 @@ function App()
   }else
   {
     return (
-      <div className={ /*backgroundColor(weather.details) + */"bg-gradient-to-b from-blue-500 to-blue-400 h-screen w-screen"}>
-       
+      <div className={"bg-gradient-to-b from-blue-500 to-blue-400 justify-between min-h-screen"}>
+       <ErrorAlert 
+        show={showAlert}
+        setShowAlert={setShowAlert}
+       />
+
         <NavBar changeCity={handleChangeCity}/>
 
         <MainDisplay
@@ -61,7 +68,7 @@ function App()
           weather={weather}
         />
 
-        <div className='absolute bottom-0 left-0 right-0 justify-center max-w-[500px] mx-auto'>
+        <div className='justify-center max-w-[500px] mx-auto'>
           <HourlyForecast
             hourlyWeather ={weather.hourly}  
           />

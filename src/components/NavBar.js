@@ -13,7 +13,7 @@ function NavBar( {changeCity} )
     }
 
     return (
-        <div className="pt-10 z-20">
+        <div className="z-20 pt-6">
             <div className=" flex justify-center">
                 <form 
                 className="bg-blue-700/50 text-gray-50 rounded-full py-1"

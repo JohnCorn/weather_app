@@ -30,7 +30,6 @@ const formatCurrentWeather = (data) => {
 }
 
 const formatForcastWeather = (data) =>{
-    console.log(data)
     let{timezone, daily, hourly} = data
 
     daily = daily.slice(0, 7).map(day => {

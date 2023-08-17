@@ -11,7 +11,7 @@ export default function MainDisplay({
 {
 
   return (
-    <div className='flex justify-center text-gray-50 text-center'>
+    <div className='flex justify-center text-gray-50 text-center mb-8'>
 
         {/* Main Text */}
         <div className='mt-5 flex flex-col z-10 font-body'>   
