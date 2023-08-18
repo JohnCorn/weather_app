@@ -15,15 +15,11 @@ function App()
   const[location, setLocation] = useState({q: "New York"});
   const[units, setUnits] = useState("imperial");
 
-  const [weatherDisplay, setWeatherDisplay] =useState({})
-
   useEffect(() => {
-    console.log({location});
     const fetchWeather = async () => {
       await getFormattedWeatherData({...location, units})
       .then(data => {
         setWeather(data)
-        setWeatherDisplay(data.daily[0])
       }).catch(() => setShowAlert(true))
     }
     
@@ -33,16 +29,6 @@ function App()
   function handleChangeCity(cityName)
   {
     setLocation(cityName)
-  }
-
-  function handleChangeDate(date)
-  {
-    for(let i=0; i <= weather.daily.length; i++){
-      if (weather.daily[i].title === date){
-        setWeatherDisplay(weather.daily[i])
-        break
-      }
-    }
   }
 
   if (!weather.name)
@@ -55,7 +41,7 @@ function App()
   }else
   {
     return (
-      <div className={"bg-gradient-to-b from-blue-500 to-blue-400 justify-between min-h-screen"}>
+      <div className={"bg-gradient-to-b from-blue-500 to-blue-400 justify-between border-2 border-black min-h-screen"}>
        <ErrorAlert 
         show={showAlert}
         setShowAlert={setShowAlert}
@@ -68,14 +54,13 @@ function App()
           weather={weather}
         />
 
-        <div className='justify-center max-w-[500px] mx-auto'>
+        <div className='justify-center max-w-[450px] mx-auto'>
           <HourlyForecast
             hourlyWeather ={weather.hourly}  
           />
 
           <DailyForecast
             dailyWeather ={weather.daily}  
-            changeDate={handleChangeDate}
           />
         </div>
 

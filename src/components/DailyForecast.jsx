@@ -2,7 +2,7 @@ import React from 'react'
 import DailyForecastCard from './DailyForecastCard'
 import {BsCalendar3}  from "react-icons/bs";
 
-function DailyForecast( {dailyWeather, changeDate} ) {
+function DailyForecast( {dailyWeather} ) {
 
   return (
     <div className=' bg-blue-700/50 rounded-xl mx-4 pt-2'>
@@ -19,8 +19,6 @@ function DailyForecast( {dailyWeather, changeDate} ) {
                 key={index}
                 day={day}
                 index={index}
-
-                changeDate={changeDate}
             />) }
             </div>
         </div>
